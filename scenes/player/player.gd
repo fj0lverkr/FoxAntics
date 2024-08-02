@@ -10,11 +10,14 @@ const MAX_FALL_SPEED: float = 400.0
 const HURT_TIME: float = 0.3
 const JUMP_VELOCITY: float = -400.0
 
-var gravity: float = ProjectSettings.get("physics/2d/default_gravity")
+enum PLAYER_STATE {IDLE, RUNNING, FALLING, JUMPING, HURT}
+
+var _gravity: float = ProjectSettings.get("physics/2d/default_gravity")
+var _player_state: PLAYER_STATE = PLAYER_STATE.IDLE
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += _gravity * delta
 
 	_get_input()
 	move_and_slide()
@@ -30,3 +33,7 @@ func _get_input() -> void:
 		velocity.y = JUMP_VELOCITY
 
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
+
+func _calculate_state() -> void:
+	if _player_state == PLAYER_STATE.HURT:
+		return
