@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=5 format=3 uid="uid://drtg2uh7n8ekw"]
 
+[ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
 [ext_resource type="PackedScene" uid="uid://8bmjf3irw4eo" path="res://scenes/player_camera/player_cam.tscn" id="2_my282"]
+[ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
 
 [node name="LevelBase" type="Node2D"]
+script = ExtResource("1_ayshk")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-11, 0)
@@ -14,3 +17,6 @@ layer_0/tile_data = PackedInt32Array(-2, 458752, 0, -1, 458752, 0, -65536, 45875
 [node name="PlayerCam" parent="." instance=ExtResource("2_my282")]
 position = Vector2(290, -162)
 zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("3_3pop5")]
+position = Vector2(46, -31)
