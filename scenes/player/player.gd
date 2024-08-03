@@ -4,6 +4,7 @@ class_name Player
 
 @onready var sprite: Sprite2D = $"Sprite2D"
 @onready var animation_player: AnimationPlayer = $"AnimationPlayer"
+@onready var debug_label: Label = $"DebugLabel"
 
 const RUN_SPEED: float = 120.0
 const MAX_FALL_SPEED: float = 400.0
@@ -24,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	_get_input()
 	move_and_slide()
 	_calculate_state()
+	_update_debug_label()
 
 func _get_input() -> void:
 	velocity.x = 0
@@ -72,3 +74,9 @@ func set_state(new_state: PLAYER_STATE) -> void:
 			animation_player.play("fall")
 			
 	sprite.flip_h = _player_direction == PLAYER_DIRECTION.LEFT
+
+func _update_debug_label() -> void:
+	debug_label.text = "%s, %s" % [
+		"on floor" if is_on_floor() else "in air",
+		PLAYER_STATE.keys()[_player_state]
+	]
