@@ -149,3 +149,5 @@ DEBUG"
 label_settings = SubResource("LabelSettings_db1kf")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]

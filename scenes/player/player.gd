@@ -4,6 +4,7 @@ class_name Player
 
 @onready var sprite: Sprite2D = $"Sprite2D"
 @onready var animation_player: AnimationPlayer = $"AnimationPlayer"
+@onready var audio_player: AudioStreamPlayer2D = $"Audio"
 @onready var debug_label: Label = $"DebugLabel"
 
 const RUN_SPEED: float = 120.0
@@ -52,7 +53,7 @@ func _calculate_state() -> void:
 		else:
 			set_state(PLAYER_STATE.RUNNING)
 	else:
-		if velocity.y > 0:
+		if velocity.y >= 0:
 			set_state(PLAYER_STATE.FALLING)
 		else:
 			set_state(PLAYER_STATE.JUMPING)
@@ -60,6 +61,9 @@ func _calculate_state() -> void:
 func set_state(new_state: PLAYER_STATE) -> void:
 	if new_state == _player_state:
 		return
+
+	if _player_state == PLAYER_STATE.FALLING and (new_state == PLAYER_STATE.IDLE or new_state == PLAYER_STATE.RUNNING):
+		SoundManager.play_sound_2d(audio_player, SoundManager.LAND)
 
 	_player_state = new_state
 
@@ -70,6 +74,7 @@ func set_state(new_state: PLAYER_STATE) -> void:
 			animation_player.play("run")
 		PLAYER_STATE.JUMPING:
 			animation_player.play("jump")
+			SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
 		PLAYER_STATE.FALLING:
 			animation_player.play("fall")
 			
