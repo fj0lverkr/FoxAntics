@@ -76,7 +76,9 @@ func set_state(new_state: PLAYER_STATE) -> void:
 	sprite.flip_h = _player_direction == PLAYER_DIRECTION.LEFT
 
 func _update_debug_label() -> void:
-	debug_label.text = "%s, %s" % [
+	debug_label.text = "%s\n%s\n%.0f, %.0f" % [
 		"on floor" if is_on_floor() else "in air",
-		PLAYER_STATE.keys()[_player_state]
+		PLAYER_STATE.keys()[_player_state].to_lower(),
+		velocity.x,
+		velocity.y
 	]

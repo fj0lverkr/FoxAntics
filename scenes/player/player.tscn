@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bks6djiqfqgtd"]
+[gd_scene load_steps=12 format=3 uid="uid://bks6djiqfqgtd"]
 
 [ext_resource type="Texture2D" uid="uid://xtrelqw6oaqx" path="res://assets/player/player.png" id="1_1mmut"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_g65jn"]
@@ -114,6 +114,10 @@ _data = {
 "run": SubResource("Animation_1p4xe")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_db1kf"]
+line_spacing = 0.0
+font_size = 48
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g65jn")
 
@@ -133,10 +137,15 @@ libraries = {
 autoplay = "idle"
 
 [node name="DebugLabel" type="Label" parent="."]
-offset_left = -14.0
-offset_top = -21.0
-offset_right = 151.0
-offset_bottom = 46.0
+offset_left = -15.0
+offset_top = -45.0
+offset_right = 150.0
+offset_bottom = 162.0
 scale = Vector2(0.171901, 0.196294)
 theme_override_font_sizes/font_size = 48
-text = "DEBUG"
+text = "DEBUG
+DEBUG
+DEBUG"
+label_settings = SubResource("LabelSettings_db1kf")
+horizontal_alignment = 1
+vertical_alignment = 1
