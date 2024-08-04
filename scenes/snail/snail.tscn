@@ -1,21 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://bkj7o6rq6p5ft"]
 
 [ext_resource type="PackedScene" uid="uid://daos372jp6yl5" path="res://scenes/base_enemy/base_enemy.tscn" id="1_tabrk"]
+[ext_resource type="Script" path="res://scenes/snail/snail.gd" id="2_23d6l"]
 [ext_resource type="Texture2D" uid="uid://b7xnj7gxo6dba" path="res://assets/enemies/snail/snail.png" id="2_n1opn"]
-
-[sub_resource type="GDScript" id="GDScript_rdvob"]
-script/source = "extends Enemy
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhkm5"]
 atlas = ExtResource("2_n1opn")
@@ -99,7 +86,7 @@ animations = [{
 size = Vector2(24, 11)
 
 [node name="Snail" instance=ExtResource("1_tabrk")]
-script = SubResource("GDScript_rdvob")
+script = ExtResource("2_23d6l")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(0.75, 0.75)
@@ -108,7 +95,7 @@ animation = &"walk"
 autoplay = "walk"
 
 [node name="FloorDetection" type="RayCast2D" parent="." index="2"]
-position = Vector2(-15, 0)
+position = Vector2(-12, 0)
 target_position = Vector2(0, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
