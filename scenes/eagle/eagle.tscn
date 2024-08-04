@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://ba44u54lvxytj"]
+
+[ext_resource type="PackedScene" uid="uid://daos372jp6yl5" path="res://scenes/base_enemy/base_enemy.tscn" id="1_yawp4"]
+[ext_resource type="Script" path="res://scenes/eagle/eagle.gd" id="2_t2v5r"]
+[ext_resource type="Texture2D" uid="uid://cbl1of7ww50pm" path="res://assets/enemies/eagle/eagle-attack.png" id="3_t1vk1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnpfp"]
+atlas = ExtResource("3_t1vk1")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxxno"]
+atlas = ExtResource("3_t1vk1")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_johqq"]
+atlas = ExtResource("3_t1vk1")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lfk5"]
+atlas = ExtResource("3_t1vk1")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdxt4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnpfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxxno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_johqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lfk5")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbubl"]
+size = Vector2(9, 7.5)
+
+[node name="Eagle" instance=ExtResource("1_yawp4")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_t2v5r")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_mdxt4")
+animation = &"fly"
+frame_progress = 0.985526
+
+[node name="TurnTimer" type="Timer" parent="." index="2"]
+wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+shape = SubResource("RectangleShape2D_jbubl")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="4"]
+scale = Vector2(0.75, 0.75)
+target_position = Vector2(0, 200)
+collision_mask = 2
+
+[connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
