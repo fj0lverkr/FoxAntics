@@ -34,7 +34,7 @@ func _apply_jump() -> void:
 		return
 	
 	velocity = JUMP_VELOCITY
-	velocity.x *= -1 if facing == FACING.LEFT else 1
+	velocity.x *= facing
 	_jump = false
 	animated_sprite.play("jump")
 	_start_timer()
