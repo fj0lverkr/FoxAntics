@@ -19,7 +19,6 @@ func _ready() -> void:
 	if not get_tree().get_nodes_in_group(GameManager.GROUP_PLAYER).is_empty():
 		_player_ref = get_tree().get_nodes_in_group(GameManager.GROUP_PLAYER).front()
 
-
 func _physics_process(_delta: float) -> void:
 	_check_off_screen()
 
