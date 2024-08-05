@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=6 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
 [ext_resource type="PackedScene" uid="uid://8bmjf3irw4eo" path="res://scenes/player_camera/player_cam.tscn" id="2_my282"]
 [ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
 [ext_resource type="PackedScene" uid="uid://bkj7o6rq6p5ft" path="res://scenes/snail/snail.tscn" id="5_01qs4"]
-[ext_resource type="PackedScene" uid="uid://b5rlgv8ak6amb" path="res://scenes/frog/frog.tscn" id="6_4e33t"]
-[ext_resource type="PackedScene" uid="uid://ba44u54lvxytj" path="res://scenes/eagle/eagle.tscn" id="7_bw2ub"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ayshk")
@@ -22,13 +20,7 @@ position = Vector2(290, -162)
 zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_3pop5")]
-position = Vector2(101, -68)
-
-[node name="Eagle" parent="." instance=ExtResource("7_bw2ub")]
-position = Vector2(613, -257)
-
-[node name="Frog" parent="." instance=ExtResource("6_4e33t")]
-position = Vector2(490, -271)
+position = Vector2(187, -38)
 
 [node name="Snail" parent="." instance=ExtResource("5_01qs4")]
-position = Vector2(797, -34)
+position = Vector2(466, -30)

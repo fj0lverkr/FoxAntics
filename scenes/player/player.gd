@@ -87,3 +87,6 @@ func _update_debug_label() -> void:
 		velocity.x,
 		velocity.y
 	]
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	print("Player hitbox hit by %s." % area)
