@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b5rlgv8ak6amb"]
 
-[ext_resource type="PackedScene" uid="uid://daos372jp6yl5" path="res://scenes/base_enemy/base_enemy.tscn" id="1_qqgkf"]
-[ext_resource type="Script" path="res://scenes/frog/frog.gd" id="2_ciw0g"]
+[ext_resource type="PackedScene" uid="uid://daos372jp6yl5" path="res://scenes/enemies/base_enemy/base_enemy.tscn" id="1_qqgkf"]
+[ext_resource type="Script" path="res://scenes/enemies/frog/frog.gd" id="2_ciw0g"]
 [ext_resource type="Texture2D" uid="uid://b7g36bo8wd6ao" path="res://assets/enemies/frog/frog_sheet.png" id="2_vv6xt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oo4x6"]
