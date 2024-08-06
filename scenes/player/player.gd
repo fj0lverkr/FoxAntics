@@ -40,6 +40,10 @@ func _get_input() -> void:
 	if Input.is_action_just_pressed("up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	if Input.is_action_just_pressed("shoot"):
+		var bullet_dir: Vector2 = Vector2.RIGHT if _player_direction == PLAYER_DIRECTION.RIGHT else Vector2.LEFT
+		ObjectMaker.create_bullet(bullet_dir, 20.0, 50.0, global_position, ObjectMaker.BULLET.PLAYER)
+
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
 		
 
