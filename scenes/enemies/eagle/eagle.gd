@@ -3,6 +3,7 @@ extends Enemy
 @onready var animated_sprite: AnimatedSprite2D = $"AnimatedSprite2D"
 @onready var turn_timer: Timer = $"TurnTimer"
 @onready var player_detector: RayCast2D = $"PlayerDetector"
+@onready var shooter: Shooter = $"Shooter"
 
 const FLY_SPEED: Vector2 = Vector2(35, 15)
 
@@ -11,6 +12,8 @@ var _fly_direction: Vector2 = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	velocity = _fly_direction
+	if player_detector.is_colliding():
+		_shoot()
 
 	move_and_slide()
 
@@ -28,6 +31,9 @@ func _flip() -> void:
 func fly() -> void:
 	_flip()
 	turn_timer.start()
+
+func _shoot() -> void:
+	shooter.shoot(Vector2.DOWN)
 
 func _on_turn_timer_timeout() -> void:
 	fly()

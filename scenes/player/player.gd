@@ -6,6 +6,7 @@ class_name Player
 @onready var animation_player: AnimationPlayer = $"AnimationPlayer"
 @onready var audio_player: AudioStreamPlayer2D = $"Audio"
 @onready var debug_label: Label = $"DebugLabel"
+@onready var shooter: Shooter = $"Shooter"
 
 const RUN_SPEED: float = 120.0
 const MAX_FALL_SPEED: float = 400.0
@@ -41,8 +42,7 @@ func _get_input() -> void:
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("shoot"):
-		var bullet_dir: Vector2 = Vector2.RIGHT if _player_direction == PLAYER_DIRECTION.RIGHT else Vector2.LEFT
-		ObjectMaker.create_bullet(bullet_dir, 20.0, 50.0, global_position, ObjectMaker.BULLET.PLAYER)
+		_shoot()
 
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL_SPEED)
 		
@@ -91,6 +91,10 @@ func _update_debug_label() -> void:
 		velocity.x,
 		velocity.y
 	]
+
+func _shoot() -> void:
+	var bullet_dir: Vector2 = Vector2.RIGHT if _player_direction == PLAYER_DIRECTION.RIGHT else Vector2.LEFT
+	shooter.shoot(bullet_dir)
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	print("Player hitbox hit by %s." % area)
