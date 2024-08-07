@@ -40,3 +40,7 @@ func _on_screen_entered() -> void:
 
 func _on_screen_exited() -> void:
 	pass # To verride.
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	print("Enemy hitbox hit by %s" % area)

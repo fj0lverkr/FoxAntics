@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scenes/bullets/enemy_bullet/enemy_bullet.gd" id="2_vmo7c"]
 
 [node name="EnemyBullet" instance=ExtResource("1_swnce")]
+collision_layer = 16
 script = ExtResource("2_vmo7c")
 
 [node name="Sprite2D" parent="." index="0"]

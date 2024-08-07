@@ -4,4 +4,5 @@
 [ext_resource type="Script" path="res://scenes/bullets/player_bullet/player_bullet.gd" id="2_mrvf8"]
 
 [node name="PlayerBullet" instance=ExtResource("1_gxl1h")]
+collision_layer = 8
 script = ExtResource("2_mrvf8")
