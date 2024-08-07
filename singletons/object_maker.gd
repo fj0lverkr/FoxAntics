@@ -7,6 +7,8 @@ const BULLETS = {
 	BULLET.ENEMY: preload("res://scenes/bullets/enemy_bullet/enemy_bullet.tscn")
 }
 
+const EXPLOSION: PackedScene = preload("res://scenes/enemy_explosion/enemy_explosion.tscn")
+
 func _add_child(child: Node) -> void:
 	get_tree().root.add_child(child)
 
@@ -18,3 +20,8 @@ func create_bullet(direction: Vector2, life_span: float, speed: float, position:
 	new_bullet.setup(direction, life_span, speed)
 	new_bullet.global_position = position
 	_call_add_child(new_bullet)
+
+func create_explosion(position: Vector2) -> void:
+	var new_explosion: EnemyExplosion = EXPLOSION.instantiate()
+	new_explosion.global_position = position
+	_call_add_child(new_explosion)

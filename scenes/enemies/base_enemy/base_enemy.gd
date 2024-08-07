@@ -33,6 +33,7 @@ func _die() -> void:
 	SignalBus.on_enemy_hit.emit(points, global_position)
 	set_physics_process(false)
 	hide()
+	ObjectMaker.create_explosion(global_position)
 	queue_free()
 
 func _on_screen_entered() -> void:
@@ -42,5 +43,5 @@ func _on_screen_exited() -> void:
 	pass # To verride.
 
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("Enemy hitbox hit by %s" % area)
+func _on_hit_box_area_entered(_area: Area2D) -> void:
+	_die()

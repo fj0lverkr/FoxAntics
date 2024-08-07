@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbgvdpkaeaql6"]
+
+[ext_resource type="Texture2D" uid="uid://dv1cmligmvxh" path="res://assets/explosion/enemy-deadth.png" id="1_jdny3"]
+[ext_resource type="Script" path="res://scenes/enemy_explosion/enemy_explosion.gd" id="2_0ql26"]
+[ext_resource type="AudioStream" uid="uid://davwrv2oi6j2p" path="res://assets/sound/impact.wav" id="3_y7xb1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6hkd"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwd55"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm7t3"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tltx"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmmaq"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(160, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhjll"]
+atlas = ExtResource("1_jdny3")
+region = Rect2(200, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jij1x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6hkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwd55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm7t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tltx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmmaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhjll")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
+
+[node name="EnemyExplosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_jij1x")
+animation = &"explosion"
+autoplay = "explosion"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("2_0ql26")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_y7xb1")
+autoplay = true
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
