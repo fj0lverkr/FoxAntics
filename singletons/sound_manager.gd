@@ -16,6 +16,8 @@ const PICKUP3 = "pickup3"
 const PICKUP5 = "pickup5"
 const YOU_WIN = "you_win"
 
+const PICKUP_SOUNDS: Array[String] = [PICKUP, PICKUP3, PICKUP5]
+
 const SOUNDS: Dictionary = {
     BOSS_ARRIVE: preload("res://assets/sound/boss_arrive.wav"),
     CHECKPOINT: preload("res://assets/sound/checkpoint.wav"),

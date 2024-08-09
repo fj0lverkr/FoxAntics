@@ -7,6 +7,8 @@ class_name Player
 @onready var audio_player: AudioStreamPlayer2D = $"Audio"
 @onready var debug_label: Label = $"DebugLabel"
 @onready var shooter: Shooter = $"Shooter"
+@onready var effect_player: AnimationPlayer = $"EffectPlayer"
+@onready var invincible_timer: Timer = $InvincibleTimer
 
 const RUN_SPEED: float = 120.0
 const MAX_FALL_SPEED: float = 400.0
@@ -19,6 +21,10 @@ enum PLAYER_DIRECTION {LEFT, RIGHT}
 var _gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 var _player_state: PLAYER_STATE = PLAYER_STATE.IDLE
 var _player_direction: PLAYER_DIRECTION = PLAYER_DIRECTION.RIGHT
+var _invincible: bool = false
+
+func _ready() -> void:
+	SignalBus.on_pickup_taken.connect(_on_pickup_taken)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -84,6 +90,17 @@ func set_state(new_state: PLAYER_STATE) -> void:
 			
 	sprite.flip_h = _player_direction == PLAYER_DIRECTION.LEFT
 
+func _apply_hit() -> void:
+	if _invincible:
+		return
+	_set_invincible()
+	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
+
+func _set_invincible() -> void:
+	_invincible = true
+	effect_player.play("invincible")
+	invincible_timer.start()
+
 func _update_debug_label() -> void:
 	debug_label.text = "%s\n%s\n%.0f, %.0f" % [
 		"on floor" if is_on_floor() else "in air",
@@ -96,5 +113,12 @@ func _shoot() -> void:
 	var bullet_dir: Vector2 = Vector2.RIGHT if _player_direction == PLAYER_DIRECTION.RIGHT else Vector2.LEFT
 	shooter.shoot(bullet_dir)
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("Player hitbox hit by %s." % area)
+func _on_hit_box_area_entered(_area: Area2D) -> void:
+	_apply_hit()
+
+func _on_invincible_timer_timeout() -> void:
+	_invincible = false
+	effect_player.stop()
+
+func _on_pickup_taken(_points: int) -> void:
+	SoundManager.play_sound_2d(audio_player, SoundManager.PICKUP_SOUNDS.pick_random())
