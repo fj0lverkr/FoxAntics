@@ -143,6 +143,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -15.0
 offset_top = -45.0
 offset_right = 150.0

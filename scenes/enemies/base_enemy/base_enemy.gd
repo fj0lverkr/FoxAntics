@@ -33,7 +33,7 @@ func _die() -> void:
 	SignalBus.on_enemy_hit.emit(points, global_position)
 	set_physics_process(false)
 	hide()
-	ObjectMaker.create_explosion(global_position)
+	ObjectMaker.create_scene(ObjectMaker.SCENE.EXPLOSION, global_position)
 	queue_free()
 
 func _on_screen_entered() -> void:
