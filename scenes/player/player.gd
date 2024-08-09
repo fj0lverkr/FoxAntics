@@ -9,11 +9,12 @@ class_name Player
 @onready var shooter: Shooter = $"Shooter"
 @onready var effect_player: AnimationPlayer = $"EffectPlayer"
 @onready var invincible_timer: Timer = $InvincibleTimer
+@onready var hurt_timer: Timer = $"HurtTimer"
 
 const RUN_SPEED: float = 120.0
 const MAX_FALL_SPEED: float = 400.0
-const HURT_TIME: float = 0.3
 const JUMP_VELOCITY: float = -400.0
+const HURT_JUMP_VELOCITY: Vector2 = Vector2(0.0, -150.0)
 
 enum PLAYER_STATE {IDLE, RUNNING, FALLING, JUMPING, HURT}
 enum PLAYER_DIRECTION {LEFT, RIGHT}
@@ -36,6 +37,9 @@ func _physics_process(delta: float) -> void:
 	_update_debug_label()
 
 func _get_input() -> void:
+	if _player_state == PLAYER_STATE.HURT:
+		return
+
 	velocity.x = 0
 	if Input.is_action_pressed("left"):
 		velocity.x = -RUN_SPEED
@@ -69,24 +73,22 @@ func _calculate_state() -> void:
 			set_state(PLAYER_STATE.JUMPING)
 
 func set_state(new_state: PLAYER_STATE) -> void:
-	if new_state == _player_state:
-		return
+	if new_state != _player_state:
+		if _player_state == PLAYER_STATE.FALLING and (new_state == PLAYER_STATE.IDLE or new_state == PLAYER_STATE.RUNNING):
+			SoundManager.play_sound_2d(audio_player, SoundManager.LAND)
 
-	if _player_state == PLAYER_STATE.FALLING and (new_state == PLAYER_STATE.IDLE or new_state == PLAYER_STATE.RUNNING):
-		SoundManager.play_sound_2d(audio_player, SoundManager.LAND)
+		_player_state = new_state
 
-	_player_state = new_state
-
-	match _player_state:
-		PLAYER_STATE.IDLE:
-			animation_player.play("idle")
-		PLAYER_STATE.RUNNING:
-			animation_player.play("run")
-		PLAYER_STATE.JUMPING:
-			animation_player.play("jump")
-			SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
-		PLAYER_STATE.FALLING:
-			animation_player.play("fall")
+		match _player_state:
+			PLAYER_STATE.IDLE:
+				animation_player.play("idle")
+			PLAYER_STATE.RUNNING:
+				animation_player.play("run")
+			PLAYER_STATE.JUMPING:
+				animation_player.play("jump")
+				SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
+			PLAYER_STATE.FALLING:
+				animation_player.play("fall")
 			
 	sprite.flip_h = _player_direction == PLAYER_DIRECTION.LEFT
 
@@ -94,12 +96,20 @@ func _apply_hit() -> void:
 	if _invincible:
 		return
 	_set_invincible()
+	_set_hurt()
 	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
 
 func _set_invincible() -> void:
 	_invincible = true
 	effect_player.play("invincible")
 	invincible_timer.start()
+
+func _set_hurt() -> void:
+	_player_state = PLAYER_STATE.HURT
+	animation_player.play("hurt")
+	velocity = HURT_JUMP_VELOCITY
+	hurt_timer.start()
+	
 
 func _update_debug_label() -> void:
 	debug_label.text = "%s\n%s\n%.0f, %.0f" % [
@@ -122,3 +132,7 @@ func _on_invincible_timer_timeout() -> void:
 
 func _on_pickup_taken(_points: int) -> void:
 	SoundManager.play_sound_2d(audio_player, SoundManager.PICKUP_SOUNDS.pick_random())
+
+
+func _on_hurt_timer_timeout() -> void:
+	set_state(PLAYER_STATE.IDLE)
