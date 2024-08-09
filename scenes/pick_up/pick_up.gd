@@ -31,3 +31,7 @@ func remove() -> void:
 
 func _on_life_timer_timeout() -> void:
     remove()
+
+func _on_area_entered(_area: Area2D) -> void:
+    SignalBus.on_pickup_taken.emit(POINTS)
+    remove()
