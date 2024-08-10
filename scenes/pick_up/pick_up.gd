@@ -6,7 +6,7 @@ class_name PickUp
 
 const VARIANTS: Array[String] = ["melon", "cherry", "kiwi", "banana"]
 const POINTS: int = 2
-const JUMP: float = -20.0
+const JUMP: float = -10.0
 const GRAVITY: float = 130
 
 var _start_pos_y: float
