@@ -13,16 +13,6 @@ const HIT: String = "parameters/conditions/on_hit"
 
 var _invincible: bool = false
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func tween_hit() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(visuals, "position", Vector2.ZERO, 1.0)
