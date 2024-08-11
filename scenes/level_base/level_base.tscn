@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=9 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bkj7o6rq6p5ft" path="res://scenes/enemies/snail/snail.tscn" id="5_01qs4"]
 [ext_resource type="PackedScene" uid="uid://ba44u54lvxytj" path="res://scenes/enemies/eagle/eagle.tscn" id="6_q52te"]
 [ext_resource type="PackedScene" uid="uid://162jgvqt588c" path="res://scenes/enemies/boss/boss.tscn" id="7_h8uqx"]
+[ext_resource type="PackedScene" uid="uid://dyfm4r528y05j" path="res://scenes/checkpoint/checkpoint.tscn" id="8_v70ir"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ayshk")
@@ -35,3 +36,6 @@ position = Vector2(514, -282)
 
 [node name="Boss" parent="." instance=ExtResource("7_h8uqx")]
 position = Vector2(1183, -14)
+
+[node name="Checkpoint" parent="." instance=ExtResource("8_v70ir")]
+position = Vector2(1183, -15)
