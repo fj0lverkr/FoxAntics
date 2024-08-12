@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=9 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
 [ext_resource type="PackedScene" uid="uid://bo1k1agues784" path="res://scenes/moving_platform/moving_platform.tscn" id="5_jmot3"]
 [ext_resource type="PackedScene" uid="uid://ctftgdykrgdel" path="res://scenes/spiked_ball/spiked_ball.tscn" id="6_d4pls"]
+[ext_resource type="PackedScene" uid="uid://bjipde6a238hp" path="res://scenes/floor_spikes/floor_spikes.tscn" id="7_f2lod"]
 
 [sub_resource type="Curve2D" id="Curve2D_2ow44"]
 _data = {
@@ -56,3 +57,6 @@ rotation = -0.186689
 position = Vector2(979.859, -129.878)
 rotation = 2.17491
 progress = 350.0
+
+[node name="FloorSpikes" parent="." instance=ExtResource("7_f2lod")]
+position = Vector2(837, -12)
