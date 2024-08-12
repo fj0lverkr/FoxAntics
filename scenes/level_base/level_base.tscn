@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=8 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
 [ext_resource type="PackedScene" uid="uid://8bmjf3irw4eo" path="res://scenes/player_camera/player_cam.tscn" id="2_my282"]
 [ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
 [ext_resource type="PackedScene" uid="uid://bo1k1agues784" path="res://scenes/moving_platform/moving_platform.tscn" id="5_jmot3"]
+[ext_resource type="PackedScene" uid="uid://ctftgdykrgdel" path="res://scenes/spiked_ball/spiked_ball.tscn" id="6_d4pls"]
+
+[sub_resource type="Curve2D" id="Curve2D_2ow44"]
+_data = {
+"points": PackedVector2Array(-60.0678, 11.3461, 60.0678, -11.3461, 1159, -56, 60.0678, -0.66742, -60.0678, 0.66742, 1197, -114, 30.0339, -70.0791, -30.0339, 70.0791, 975, -121, 0, 0, 0, 0, 1052, -50, 0, 0, 0, 0, 1159, -56)
+}
+point_count = 5
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ayshk")
@@ -20,7 +27,7 @@ position = Vector2(290, -162)
 zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_3pop5")]
-position = Vector2(437, -40)
+position = Vector2(784, -39)
 
 [node name="MovingPlatform" parent="." node_paths=PackedStringArray("p1", "p2") instance=ExtResource("5_jmot3")]
 position = Vector2(690, -60)
@@ -34,3 +41,18 @@ position = Vector2(460, -60)
 
 [node name="M2" type="Marker2D" parent="TestMarkers"]
 position = Vector2(690, -60)
+
+[node name="TestPaths" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="TestPaths"]
+position = Vector2(-22, 12)
+curve = SubResource("Curve2D_2ow44")
+
+[node name="SpikedBall" parent="TestPaths/Path2D" instance=ExtResource("6_d4pls")]
+position = Vector2(1159, -56)
+rotation = -0.186689
+
+[node name="SpikedBall2" parent="TestPaths/Path2D" instance=ExtResource("6_d4pls")]
+position = Vector2(979.859, -129.878)
+rotation = 2.17491
+progress = 350.0
