@@ -11,7 +11,8 @@ class_name Player
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var hurt_timer: Timer = $"HurtTimer"
 
-const RUN_SPEED: float = 120.0
+@export var run_speed: float = 120.0
+
 const MAX_FALL_SPEED: float = 400.0
 const JUMP_VELOCITY: float = -400.0
 const HURT_JUMP_VELOCITY: Vector2 = Vector2(0.0, -150.0)
@@ -42,10 +43,10 @@ func _get_input() -> void:
 
 	velocity.x = 0
 	if Input.is_action_pressed("left"):
-		velocity.x = -RUN_SPEED
+		velocity.x = -run_speed
 		_player_direction = PLAYER_DIRECTION.LEFT
 	elif Input.is_action_pressed("right"):
-		velocity.x = RUN_SPEED
+		velocity.x = run_speed
 		_player_direction = PLAYER_DIRECTION.RIGHT
 	
 	if Input.is_action_just_pressed("up") and is_on_floor():
