@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=6 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
 [ext_resource type="PackedScene" uid="uid://8bmjf3irw4eo" path="res://scenes/player_camera/player_cam.tscn" id="2_my282"]
 [ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
+[ext_resource type="PackedScene" uid="uid://bo1k1agues784" path="res://scenes/moving_platform/moving_platform.tscn" id="5_jmot3"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ayshk")
@@ -20,3 +21,16 @@ zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_3pop5")]
 position = Vector2(437, -40)
+
+[node name="MovingPlatform" parent="." node_paths=PackedStringArray("p1", "p2") instance=ExtResource("5_jmot3")]
+position = Vector2(690, -60)
+p1 = NodePath("../TestMarkers/M1")
+p2 = NodePath("../TestMarkers/M2")
+
+[node name="TestMarkers" type="Node" parent="."]
+
+[node name="M1" type="Marker2D" parent="TestMarkers"]
+position = Vector2(460, -60)
+
+[node name="M2" type="Marker2D" parent="TestMarkers"]
+position = Vector2(690, -60)
