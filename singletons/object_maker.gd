@@ -3,14 +3,55 @@ extends Node
 enum BULLET {PLAYER, ENEMY}
 enum SCENE {EXPLOSION, PICKUP}
 
-const BULLETS = {
+const BULLETS: Dictionary = {
 	BULLET.PLAYER: preload("res://scenes/bullets/player_bullet/player_bullet.tscn"),
 	BULLET.ENEMY: preload("res://scenes/bullets/enemy_bullet/enemy_bullet.tscn")
 }
 
-const SCENES = {
+const SCENES: Dictionary = {
 	SCENE.EXPLOSION: preload("res://scenes/enemy_explosion/enemy_explosion.tscn"),
 	SCENE.PICKUP: preload("res://scenes/pick_up/pick_up.tscn")
+}
+
+
+const BG_FILES: Dictionary = {
+	1: [
+		preload("res://assets/backgrounds/game_background_1/layers/sky.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/clouds_1.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/clouds_2.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/clouds_3.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/clouds_4.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/rocks_1.png"),
+		preload("res://assets/backgrounds/game_background_1/layers/rocks_2.png")
+	],
+	2: [
+		preload("res://assets/backgrounds/game_background_2/layers/sky.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/birds.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/clouds_1.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/clouds_2.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/clouds_3.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/pines.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/rocks_1.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/rocks_2.png"),
+		preload("res://assets/backgrounds/game_background_2/layers/rocks_3.png")
+	],
+	3: [
+		preload("res://assets/backgrounds/game_background_3/layers/sky.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/clouds_1.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/clouds_2.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/ground_1.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/ground_2.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/ground_3.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/plant.png"),
+		preload("res://assets/backgrounds/game_background_3/layers/rocks.png")
+	],
+	4: [
+		preload("res://assets/backgrounds/game_background_4/layers/sky.png"),
+		preload("res://assets/backgrounds/game_background_4/layers/clouds_1.png"),
+		preload("res://assets/backgrounds/game_background_4/layers/clouds_2.png"),
+		preload("res://assets/backgrounds/game_background_4/layers/ground.png"),
+		preload("res://assets/backgrounds/game_background_4/layers/rocks.png")
+	]
 }
 
 func _add_child(child: Node) -> void:
