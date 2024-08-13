@@ -12,6 +12,7 @@ class_name Player
 @onready var hurt_timer: Timer = $"HurtTimer"
 
 @export var run_speed: float = 120.0
+@export var lives: int = 5
 
 const MAX_FALL_SPEED: float = 400.0
 const JUMP_VELOCITY: float = -400.0
@@ -99,8 +100,8 @@ func _apply_hit() -> void:
 	if _invincible:
 		return
 	_set_invincible()
+	lives -= 1
 	_set_state(PLAYER_STATE.HURT)
-	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
 
 func _set_invincible() -> void:
 	_invincible = true
@@ -110,6 +111,8 @@ func _set_invincible() -> void:
 func _set_hurt() -> void:
 	animation_player.play("hurt")
 	velocity = HURT_JUMP_VELOCITY
+	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
+	SignalBus.on_player_hit.emit(lives)
 	hurt_timer.start()
 	
 func _update_debug_label() -> void:
