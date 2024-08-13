@@ -64,16 +64,16 @@ func _calculate_state() -> void:
 
 	if is_on_floor():
 		if velocity.x == 0:
-			set_state(PLAYER_STATE.IDLE)
+			_set_state(PLAYER_STATE.IDLE)
 		else:
-			set_state(PLAYER_STATE.RUNNING)
+			_set_state(PLAYER_STATE.RUNNING)
 	else:
 		if velocity.y >= 0:
-			set_state(PLAYER_STATE.FALLING)
+			_set_state(PLAYER_STATE.FALLING)
 		else:
-			set_state(PLAYER_STATE.JUMPING)
+			_set_state(PLAYER_STATE.JUMPING)
 
-func set_state(new_state: PLAYER_STATE) -> void:
+func _set_state(new_state: PLAYER_STATE) -> void:
 	if new_state != _player_state:
 		if _player_state == PLAYER_STATE.FALLING and (new_state == PLAYER_STATE.IDLE or new_state == PLAYER_STATE.RUNNING):
 			SoundManager.play_sound_2d(audio_player, SoundManager.LAND)
@@ -90,6 +90,8 @@ func set_state(new_state: PLAYER_STATE) -> void:
 				SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
 			PLAYER_STATE.FALLING:
 				animation_player.play("fall")
+			PLAYER_STATE.HURT:
+				_set_hurt()
 			
 	sprite.flip_h = _player_direction == PLAYER_DIRECTION.LEFT
 
@@ -97,7 +99,7 @@ func _apply_hit() -> void:
 	if _invincible:
 		return
 	_set_invincible()
-	_set_hurt()
+	_set_state(PLAYER_STATE.HURT)
 	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
 
 func _set_invincible() -> void:
@@ -106,12 +108,10 @@ func _set_invincible() -> void:
 	invincible_timer.start()
 
 func _set_hurt() -> void:
-	_player_state = PLAYER_STATE.HURT
 	animation_player.play("hurt")
 	velocity = HURT_JUMP_VELOCITY
 	hurt_timer.start()
 	
-
 func _update_debug_label() -> void:
 	debug_label.text = "%s\n%s\n%.0f, %.0f" % [
 		"on floor" if is_on_floor() else "in air",
@@ -136,4 +136,4 @@ func _on_pickup_taken(_points: int) -> void:
 
 
 func _on_hurt_timer_timeout() -> void:
-	set_state(PLAYER_STATE.IDLE)
+	_set_state(PLAYER_STATE.IDLE)
