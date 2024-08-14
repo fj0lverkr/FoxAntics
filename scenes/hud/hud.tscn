@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bye75w214dweh"]
+[gd_scene load_steps=6 format=3 uid="uid://bye75w214dweh"]
 
 [ext_resource type="LabelSettings" uid="uid://cd6fw71smmni4" path="res://assets/GL_48_White.tres" id="1_nxi5y"]
 [ext_resource type="Texture2D" uid="uid://jka0nadwutf" path="res://assets/items/pixel heart 2.png" id="2_586kd"]
 [ext_resource type="LabelSettings" uid="uid://bxcrp4yp2shbm" path="res://assets/LG_64_Title.tres" id="3_x4ula"]
 [ext_resource type="LabelSettings" uid="uid://dy5tbycl7dxr" path="res://assets/LG_24_SubTitle.tres" id="4_ee1n1"]
+[ext_resource type="LabelSettings" uid="uid://cgmoepicl744b" path="res://assets/LG_36_HS.tres" id="5_j2ob1"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -65,7 +66,6 @@ texture = ExtResource("2_586kd")
 stretch_mode = 5
 
 [node name="Overlay" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +75,6 @@ grow_vertical = 2
 color = Color(0, 0.00392157, 0.0980392, 0.862745)
 
 [node name="VBLevelComplete" type="VBoxContainer" parent="Overlay"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,6 +127,6 @@ vertical_alignment = 1
 [node name="SubTitleLabel" type="Label" parent="Overlay/VBGameOver"]
 layout_mode = 2
 text = "Press jump for main menu"
-label_settings = ExtResource("4_ee1n1")
+label_settings = ExtResource("5_j2ob1")
 horizontal_alignment = 1
 vertical_alignment = 1
