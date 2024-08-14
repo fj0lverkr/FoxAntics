@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=16 format=3 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
 [ext_resource type="PackedScene" uid="uid://8bmjf3irw4eo" path="res://scenes/player_camera/player_cam.tscn" id="2_my282"]
+[ext_resource type="AudioStream" uid="uid://bmj4yftq38ee8" path="res://assets/sound/Flowing Rocks.ogg" id="2_n17gk"]
 [ext_resource type="PackedScene" uid="uid://bks6djiqfqgtd" path="res://scenes/player/player.tscn" id="3_3pop5"]
 [ext_resource type="Texture2D" uid="uid://dbfl1p77vuxyi" path="res://assets/backgrounds/game_background_1/layers/clouds_1.png" id="6_egh3b"]
 [ext_resource type="Texture2D" uid="uid://but1ubnb1usuc" path="res://assets/backgrounds/game_background_1/layers/clouds_2.png" id="7_8on25"]
@@ -13,9 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://xn0jobkh2wxu" path="res://assets/backgrounds/game_background_1/layers/rocks_2.png" id="9_qxrfb"]
 [ext_resource type="PackedScene" uid="uid://dm2fbr8jeh8ne" path="res://scenes/scrolling_background/scrolling_background.tscn" id="12_w2le0"]
 [ext_resource type="PackedScene" uid="uid://bjipde6a238hp" path="res://scenes/floor_spikes/floor_spikes.tscn" id="13_qkvwj"]
+[ext_resource type="PackedScene" uid="uid://bye75w214dweh" path="res://scenes/hud/hud.tscn" id="14_nrjrh"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_ayshk")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_n17gk")
+volume_db = -10.0
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -97,9 +104,12 @@ limit_smoothed = true
 
 [node name="Player" parent="." instance=ExtResource("3_3pop5")]
 position = Vector2(606, -433)
-run_speed = 300.0
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("12_w2le0")]
 
 [node name="FloorSpikes" parent="." instance=ExtResource("13_qkvwj")]
 position = Vector2(675, -13)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("14_nrjrh")]
