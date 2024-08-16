@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://yrfn7o08rhm1"]
+[gd_scene load_steps=6 format=3 uid="uid://yrfn7o08rhm1"]
 
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_hi2ny"]
 [ext_resource type="AudioStream" uid="uid://dmhewhhn65p8n" path="res://assets/sound/Farm Frolics.ogg" id="1_x2kwn"]
 [ext_resource type="Texture2D" uid="uid://dhtxxb1o7a3jl" path="res://assets/backgrounds/platformer_background_4.png" id="2_8hkjd"]
 [ext_resource type="LabelSettings" uid="uid://16lprti7wp1x" path="res://assets/LG_64_MainTitle.tres" id="3_7vtcq"]
 [ext_resource type="LabelSettings" uid="uid://cgmoepicl744b" path="res://assets/LG_36_HS.tres" id="4_e1bkm"]
 
 [node name="Main" type="CanvasLayer"]
+script = ExtResource("1_hi2ny")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_x2kwn")

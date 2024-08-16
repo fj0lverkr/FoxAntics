@@ -29,7 +29,7 @@ limit_right = 550
 limit_bottom = 0
 limit_smoothed = true
 
-[node name="Player" parent="." instance=ExtResource("3_3pop5")]
+[node name="Player" parent="." groups=["movables"] instance=ExtResource("3_3pop5")]
 position = Vector2(19, -44)
 
 [node name="Markers" type="Node" parent="."]

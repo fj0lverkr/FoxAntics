@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2tsi"]
 size = Vector2(46, 7)
 
-[node name="MovingPlatform" type="AnimatableBody2D"]
+[node name="MovingPlatform" type="AnimatableBody2D" groups=["movables"]]
 collision_mask = 96
 script = ExtResource("1_d441g")
 

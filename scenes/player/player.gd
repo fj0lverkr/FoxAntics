@@ -28,6 +28,10 @@ var _invincible: bool = false
 
 func _ready() -> void:
 	SignalBus.on_pickup_taken.connect(_on_pickup_taken)
+	call_deferred("_deferred_ready")
+
+func _deferred_ready() -> void:
+	SignalBus.on_level_started.emit(lives)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -139,4 +143,6 @@ func _on_pickup_taken(_points: int) -> void:
 
 
 func _on_hurt_timer_timeout() -> void:
+	if lives == 0:
+		SignalBus.on_game_over.emit()
 	_set_state(PLAYER_STATE.IDLE)
