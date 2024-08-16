@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drtg2uh7n8ekw"]
+[gd_scene load_steps=10 format=4 uid="uid://drtg2uh7n8ekw"]
 
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_ayshk"]
 [ext_resource type="TileSet" uid="uid://dphscjskhiwjc" path="res://scenes/level_base/atlas_terrain.tres" id="1_do10c"]
@@ -15,11 +15,11 @@ script = ExtResource("1_ayshk")
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("12_w2le0")]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TMLayer" type="TileMapLayer" parent="."]
+use_parent_material = true
 position = Vector2(-11, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAHAAAAAAD/////AAAHAAAAAAD+////AAAHAAAAAAD9////AAAHAAAAAAABAP//AAAHAAAAAAACAP//AAAHAAAAAAADAP//AAAHAAAAAAAFAP//AAAHAAAAAAAEAP//AAAHAAAAAAAGAP//AAAHAAAAAAAHAP//AAAHAAAAAAAIAP//AAAHAAAAAAAJAP//AAAHAAAAAAD8////AAAHAAAAAAD7////AAAHAAAAAAD6////AAAHAAAAAAD5////AAAHAAAAAAD4////AAAHAAAAAAD3////AAAGAAAAAAAKAP//AAAIAAAAAAAQAP//AAAHAAAAAAARAP//AAAHAAAAAAASAP//AAAHAAAAAAATAP//AAAHAAAAAAAUAP//AAAHAAAAAAAVAP//AAAHAAAAAAAWAP//AAAHAAAAAAAYAP//AAAHAAAAAAAXAP//AAAHAAAAAAAZAP//AAAHAAAAAAAaAP//AAAHAAAAAAAbAP//AAAHAAAAAAAcAP//AAAHAAAAAAAdAP//AAAHAAAAAAAeAP//AAAHAAAAAAAfAP//AAAHAAAAAAAhAP//AAAHAAAAAAAgAP//AAAHAAAAAAAPAP//AAAGAAAAAAAiAP//AAAIAAAAAAA=")
 tile_set = ExtResource("1_do10c")
-format = 2
-layer_0/tile_data = PackedInt32Array(-65536, 458752, 0, -1, 458752, 0, -2, 458752, 0, -3, 458752, 0, -65535, 458752, 0, -65534, 458752, 0, -65533, 458752, 0, -65531, 458752, 0, -65532, 458752, 0, -65530, 458752, 0, -65529, 458752, 0, -65528, 458752, 0, -65527, 458752, 0, -4, 458752, 0, -5, 458752, 0, -6, 458752, 0, -7, 458752, 0, -8, 458752, 0, -9, 393216, 0, -65526, 524288, 0, -65520, 458752, 0, -65519, 458752, 0, -65518, 458752, 0, -65517, 458752, 0, -65516, 458752, 0, -65515, 458752, 0, -65514, 458752, 0, -65512, 458752, 0, -65513, 458752, 0, -65511, 458752, 0, -65510, 458752, 0, -65509, 458752, 0, -65508, 458752, 0, -65507, 458752, 0, -65506, 458752, 0, -65505, 458752, 0, -65503, 458752, 0, -65504, 458752, 0, -65521, 393216, 0, -65502, 524288, 0)
 
 [node name="PlayerCam" parent="." instance=ExtResource("2_my282")]
 zoom = Vector2(2, 2)
