@@ -34,6 +34,9 @@ position = Vector2(19, -44)
 
 [node name="Markers" type="Node" parent="."]
 
+[node name="SpawnPlayer" type="Marker2D" parent="Markers"]
+position = Vector2(18, -21)
+
 [node name="Paths" type="Node" parent="."]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]

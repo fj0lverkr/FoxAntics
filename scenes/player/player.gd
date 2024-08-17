@@ -95,6 +95,9 @@ func _set_state(new_state: PLAYER_STATE) -> void:
 				SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
 			PLAYER_STATE.FALLING:
 				animation_player.play("fall")
+				if position.y > 100:
+					_invincible = false
+					_apply_hit()
 			PLAYER_STATE.HURT:
 				_set_hurt()
 			
