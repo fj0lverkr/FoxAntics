@@ -11,8 +11,10 @@ class_name Player
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var hurt_timer: Timer = $"HurtTimer"
 
+
 @export var run_speed: float = 120.0
 @export var lives: int = 5
+@export var player_marker: Marker2D
 
 const MAX_FALL_SPEED: float = 400.0
 const JUMP_VELOCITY: float = -400.0
@@ -25,10 +27,20 @@ var _gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 var _player_state: PLAYER_STATE = PLAYER_STATE.IDLE
 var _player_direction: PLAYER_DIRECTION = PLAYER_DIRECTION.RIGHT
 var _invincible: bool = false
+var _camera_limit_bottom: float = 0.0
+var _oob: bool = false
 
 func _ready() -> void:
 	SignalBus.on_pickup_taken.connect(_on_pickup_taken)
+	_camera_limit_bottom = _get_player_cam_bottom_limit()
 	call_deferred("_deferred_ready")
+
+func _get_player_cam_bottom_limit() -> float:
+	var cameras: Array = get_tree().get_nodes_in_group(Constants.GROUP_CAMERAS)
+	for c: Node in cameras:
+		if c is PlayerCamera:
+			return c.limit_bottom
+	return 0.0
 
 func _deferred_ready() -> void:
 	SignalBus.on_level_started.emit(lives)
@@ -75,6 +87,10 @@ func _calculate_state() -> void:
 	else:
 		if velocity.y >= 0:
 			_set_state(PLAYER_STATE.FALLING)
+			if global_position.y > _camera_limit_bottom + 20:
+				_invincible = false
+				_oob = true
+				_apply_hit()
 		else:
 			_set_state(PLAYER_STATE.JUMPING)
 
@@ -95,9 +111,6 @@ func _set_state(new_state: PLAYER_STATE) -> void:
 				SoundManager.play_sound_2d(audio_player, SoundManager.JUMP)
 			PLAYER_STATE.FALLING:
 				animation_player.play("fall")
-				if position.y > 100:
-					_invincible = false
-					_apply_hit()
 			PLAYER_STATE.HURT:
 				_set_hurt()
 			
@@ -119,7 +132,7 @@ func _set_hurt() -> void:
 	animation_player.play("hurt")
 	velocity = HURT_JUMP_VELOCITY
 	SoundManager.play_sound_2d(audio_player, SoundManager.DAMAGE)
-	SignalBus.on_player_hit.emit(lives)
+	SignalBus.on_player_hit.emit(lives, !_oob)
 	hurt_timer.start()
 	
 func _update_debug_label() -> void:
@@ -148,4 +161,7 @@ func _on_pickup_taken(_points: int) -> void:
 func _on_hurt_timer_timeout() -> void:
 	if lives == 0:
 		SignalBus.on_game_over.emit()
+	elif _oob:
+		_oob = false
+		global_position = player_marker.global_position
 	_set_state(PLAYER_STATE.IDLE)

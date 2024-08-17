@@ -19,7 +19,9 @@ func _get_random_offset() -> Vector2:
         randf_range(-shake_amount, shake_amount)
     )
 
-func _on_player_hit(_lives: int) -> void:
+func _on_player_hit(_lives: int, do_camera_shake: bool) -> void:
+    if not do_camera_shake:
+        return
     set_process(true)
     shake_timer.start()
 

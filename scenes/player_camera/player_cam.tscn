@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player_camera/player_cam.gd" id="1_grr6f"]
 
-[node name="PlayerCam" type="Camera2D"]
+[node name="PlayerCam" type="Camera2D" groups=["cameras"]]
 script = ExtResource("1_grr6f")
 
 [node name="ShakeTimer" type="Timer" parent="."]

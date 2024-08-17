@@ -11,10 +11,13 @@ func _ready() -> void:
 	overlay.hide()
 	vb_game_over.hide()
 	vb_level_complete.hide()
-	SignalBus.on_player_hit.connect(_update_hearts)
+	SignalBus.on_player_hit.connect(_update_hearts_on_hit)
 	SignalBus.on_level_started.connect(_update_hearts)
 	SignalBus.on_game_over.connect(_on_game_over)
 	_hearts = hb_hearts.get_children()
+
+func _update_hearts_on_hit(lives: int, _b: bool) -> void:
+	_update_hearts(lives)
 
 func _update_hearts(lives: int) -> void:
 	for life in range(_hearts.size()):
