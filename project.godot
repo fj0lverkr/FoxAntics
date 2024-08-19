@@ -21,6 +21,7 @@ Constants="*res://singletons/constants.gd"
 SignalBus="*res://singletons/signal_bus.gd"
 SoundManager="*res://singletons/sound_manager.gd"
 GameManager="*res://singletons/game_manager.gd"
+ScoreManager="*res://singletons/score_manager.gd"
 ObjectMaker="*res://singletons/object_maker.gd"
 
 [debug]

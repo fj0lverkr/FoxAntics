@@ -16,8 +16,8 @@ var _player_ref: Player
 var _dead: bool = false
 
 func _ready() -> void:
-	if not get_tree().get_nodes_in_group(GameManager.GROUP_PLAYER).is_empty():
-		_player_ref = get_tree().get_nodes_in_group(GameManager.GROUP_PLAYER).front()
+	if not get_tree().get_nodes_in_group(Constants.GROUP_PLAYER).is_empty():
+		_player_ref = get_tree().get_nodes_in_group(Constants.GROUP_PLAYER).front()
 
 func _physics_process(_delta: float) -> void:
 	_check_off_screen()
@@ -30,7 +30,7 @@ func _die() -> void:
 	if _dead:
 		return
 	_dead = true
-	SignalBus.on_enemy_hit.emit(points, global_position)
+	SignalBus.on_enemy_hit.emit(points)
 	set_physics_process(false)
 	hide()
 	ObjectMaker.create_scene(ObjectMaker.SCENE.EXPLOSION, global_position)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://nac04lwsfkh4"]
+[gd_scene load_steps=7 format=4 uid="uid://nac04lwsfkh4"]
 
 [ext_resource type="PackedScene" uid="uid://drtg2uh7n8ekw" path="res://scenes/level_base/level_base.tscn" id="1_37m4q"]
 [ext_resource type="PackedScene" uid="uid://ctftgdykrgdel" path="res://scenes/spiked_ball/spiked_ball.tscn" id="2_aoxlp"]
 [ext_resource type="PackedScene" uid="uid://bjipde6a238hp" path="res://scenes/floor_spikes/floor_spikes.tscn" id="2_j6are"]
+[ext_resource type="PackedScene" uid="uid://b5rlgv8ak6amb" path="res://scenes/enemies/frog/frog.tscn" id="4_s7mnk"]
+[ext_resource type="PackedScene" uid="uid://bkj7o6rq6p5ft" path="res://scenes/enemies/snail/snail.tscn" id="5_evqvt"]
 
 [sub_resource type="Curve2D" id="Curve2D_85f8j"]
 _data = {
@@ -27,3 +29,12 @@ position = Vector2(-68, -104)
 
 [node name="FloorSpikes" parent="." index="10" instance=ExtResource("2_j6are")]
 position = Vector2(-140, -15)
+
+[node name="Snail" parent="." index="11" instance=ExtResource("5_evqvt")]
+position = Vector2(137, -28)
+
+[node name="Frog" parent="." index="12" instance=ExtResource("4_s7mnk")]
+position = Vector2(95, -208)
+
+[node name="Frog2" parent="." index="13" instance=ExtResource("4_s7mnk")]
+position = Vector2(110, -124)
