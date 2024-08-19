@@ -7,6 +7,7 @@ const HIT: String = "parameters/conditions/on_hit"
 
 @onready var state_machine: AnimationTree = $"AnimationTree"
 @onready var visuals: Node2D = $"Visuals"
+@onready var hitbox_shape: CollisionShape2D = $Visuals/Hitbox/CollisionShape2D
 
 @export var lives: int = 2
 @export var points: int = 5
@@ -38,6 +39,7 @@ func take_damage() -> void:
 func _on_trigger_area_entered(_area: Area2D) -> void:
 	if not state_machine[TRIGGER]:
 		state_machine[TRIGGER] = true
+		hitbox_shape.set_deferred("disabled", false)
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	take_damage()
