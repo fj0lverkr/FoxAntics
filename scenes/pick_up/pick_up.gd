@@ -17,7 +17,7 @@ func _ready() -> void:
     _start_pos_y = global_position.y
     animated_sprite.play(VARIANTS.pick_random())
 
-func _process(delta: float) -> void:
+func _fysics_process(delta: float) -> void:
     _motion.y += _speed_y * delta
     _speed_y += GRAVITY * delta
     move_and_collide(_motion)

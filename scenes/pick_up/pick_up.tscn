@@ -514,14 +514,13 @@ script = ExtResource("1_ncwpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5psij")
-animation = &"melon"
-frame_progress = 0.269955
+animation = &"banana"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_fk3dv")
 
 [node name="LifeTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 8.0
 one_shot = true
 autostart = true
 
