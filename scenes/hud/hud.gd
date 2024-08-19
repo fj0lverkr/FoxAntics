@@ -9,6 +9,7 @@ extends Control
 var _hearts: Array[Node]
 
 func _ready() -> void:
+	_on_score_updated(ScoreManager.get_score())
 	overlay.hide()
 	vb_game_over.hide()
 	vb_level_complete.hide()
