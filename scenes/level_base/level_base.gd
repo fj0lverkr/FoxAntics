@@ -5,5 +5,6 @@ extends Node2D
 
 func _physics_process(_delta: float) -> void:
 	player_cam.position = player.position
-	if Input.is_action_just_pressed("up") and GameManager.get_game_state() == GameManager.GAME_STATE.OVER:
+	if (Input.is_action_just_pressed("up") and GameManager.get_game_state() == GameManager.GAME_STATE.OVER) or \
+	(Input.is_action_just_pressed("quit") and GameManager.get_game_state() == GameManager.GAME_STATE.RUNNING):
 		GameManager.call_deferred("load_main_scene")
