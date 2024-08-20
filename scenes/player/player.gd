@@ -174,4 +174,5 @@ func _on_hurt_timer_timeout() -> void:
 	_set_state(PLAYER_STATE.IDLE)
 
 func _on_level_finished() -> void:
+	_set_state(PLAYER_STATE.IDLE)
 	GameManager.set_player_lives(lives)
