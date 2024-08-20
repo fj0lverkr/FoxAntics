@@ -282,7 +282,6 @@ deterministic = false
 root_node = NodePath("../Visuals")
 tree_root = SubResource("AnimationNodeStateMachine_523ry")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/on_hit = false
 parameters/conditions/on_trigger = false
 
 [connection signal="area_entered" from="Visuals/Hitbox" to="." method="_on_hitbox_area_entered"]
