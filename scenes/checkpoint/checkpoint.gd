@@ -18,6 +18,5 @@ func _on_boss_killed(_points: int) -> void:
 		SoundManager.play_sound_2d(sound, SoundManager.CHECKPOINT)
 
 func _on_area_entered(_area: Area2D) -> void:
-	SignalBus.on_level_finished.emit()
 	SoundManager.play_sound_2d(sound, SoundManager.YOU_WIN)
-	GameManager.call_deferred("load_next_level")
+	SignalBus.on_level_finished.emit()

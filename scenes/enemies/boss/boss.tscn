@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://162jgvqt588c"]
+[gd_scene load_steps=24 format=3 uid="uid://162jgvqt588c"]
 
 [ext_resource type="Texture2D" uid="uid://r0olv3xk1wh5" path="res://assets/enemies/boss/boss.png" id="1_fttul"]
 [ext_resource type="Script" path="res://scenes/enemies/boss/boss.gd" id="1_kayrv"]
@@ -224,14 +224,6 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7g2be"]
-advance_mode = 2
-advance_condition = &"on_hit"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2awo"]
-advance_mode = 2
-advance_condition = &"on_hit"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yb834"]
 switch_mode = 2
 advance_mode = 2
@@ -248,7 +240,7 @@ states/pulse/node = SubResource("AnimationNodeAnimation_cynp3")
 states/pulse/position = Vector2(442, 47)
 states/spawn/node = SubResource("AnimationNodeAnimation_nd1dk")
 states/spawn/position = Vector2(322, 176)
-transitions = ["Start", "initialize", SubResource("AnimationNodeStateMachineTransition_hnjtr"), "initialize", "spawn", SubResource("AnimationNodeStateMachineTransition_hmxtm"), "spawn", "pulse", SubResource("AnimationNodeStateMachineTransition_wwli6"), "pulse", "attack", SubResource("AnimationNodeStateMachineTransition_uvxoc"), "attack", "pulse", SubResource("AnimationNodeStateMachineTransition_pd4iy"), "pulse", "hurt", SubResource("AnimationNodeStateMachineTransition_7g2be"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_h2awo"), "hurt", "pulse", SubResource("AnimationNodeStateMachineTransition_yb834")]
+transitions = ["Start", "initialize", SubResource("AnimationNodeStateMachineTransition_hnjtr"), "initialize", "spawn", SubResource("AnimationNodeStateMachineTransition_hmxtm"), "spawn", "pulse", SubResource("AnimationNodeStateMachineTransition_wwli6"), "pulse", "attack", SubResource("AnimationNodeStateMachineTransition_uvxoc"), "attack", "pulse", SubResource("AnimationNodeStateMachineTransition_pd4iy"), "hurt", "pulse", SubResource("AnimationNodeStateMachineTransition_yb834")]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_kayrv")
@@ -261,8 +253,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_fttul")
 
 [node name="Hitbox" type="Area2D" parent="Visuals"]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 8
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Hitbox"]
 position = Vector2(0, -34)
@@ -285,6 +278,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
 root_node = NodePath("../Visuals")
 tree_root = SubResource("AnimationNodeStateMachine_523ry")
 anim_player = NodePath("../AnimationPlayer")
