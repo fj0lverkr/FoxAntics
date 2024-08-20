@@ -41,7 +41,6 @@ func _save_score() -> void:
         file.store_string(JSON.stringify(_score_history))
         file.close()
 
-
 func _reset_score() -> void:
     _score = 0
 
