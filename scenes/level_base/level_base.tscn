@@ -33,6 +33,8 @@ limit_smoothed = true
 position = Vector2(19, -44)
 player_marker = NodePath("../Markers/SpawnPlayer")
 
+[node name="Enemies" type="Node" parent="."]
+
 [node name="Markers" type="Node" parent="."]
 
 [node name="SpawnPlayer" type="Marker2D" parent="Markers"]
