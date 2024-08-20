@@ -11,7 +11,6 @@ class_name Player
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var hurt_timer: Timer = $"HurtTimer"
 
-
 @export var run_speed: float = 120.0
 @export var lives: int = 5
 @export var player_marker: Marker2D
@@ -31,11 +30,14 @@ var _camera_limit_bottom: float = 0.0
 var _oob: bool = false
 
 func _ready() -> void:
+	_setup_stored_lives()
 	SignalBus.on_pickup_taken.connect(_on_pickup_taken)
+	SignalBus.on_level_finished.connect(_on_level_finished)
 	_camera_limit_bottom = _get_player_cam_bottom_limit()
 	call_deferred("_deferred_ready")
 
 func _get_player_cam_bottom_limit() -> float:
+
 	var cameras: Array = get_tree().get_nodes_in_group(Constants.GROUP_CAMERAS)
 	for c: Node in cameras:
 		if c is PlayerCamera:
@@ -44,6 +46,12 @@ func _get_player_cam_bottom_limit() -> float:
 
 func _deferred_ready() -> void:
 	SignalBus.on_level_started.emit(lives)
+
+func _setup_stored_lives() -> void:
+	if GameManager.get_player_lives() == 0:
+		return
+	else:
+		lives = GameManager.get_player_lives()
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -157,7 +165,6 @@ func _on_invincible_timer_timeout() -> void:
 func _on_pickup_taken(_points: int) -> void:
 	SoundManager.play_sound_2d(audio_player, SoundManager.PICKUP_SOUNDS.pick_random())
 
-
 func _on_hurt_timer_timeout() -> void:
 	if lives == 0:
 		SignalBus.on_game_over.emit()
@@ -165,3 +172,6 @@ func _on_hurt_timer_timeout() -> void:
 		_oob = false
 		global_position = player_marker.global_position
 	_set_state(PLAYER_STATE.IDLE)
+
+func _on_level_finished() -> void:
+	GameManager.set_player_lives(lives)
